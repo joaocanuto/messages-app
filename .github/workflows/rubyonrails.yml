@@ -1,0 +1,25 @@
+name: "learn-github-actions"
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: 
+  
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.3'
+      - name: install dependencies
+        run:  gem install bundler
+              bundle install
+      - name: Run tests
+        run: bundle exec rspec
+        
+      
+    
